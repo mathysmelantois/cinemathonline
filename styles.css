@@ -1,292 +1,184 @@
 html {
-    background-color: #000;
-    color: #ededed;
+    background-color: #f8f9fa; /* Fond blanc cassé */
+    color: #343a40; /* Texte gris foncé */
     height: 100vh;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 body {
     background: none transparent;
-    color: #d32f2f; /* Amélioration de la couleur pour un meilleur contraste */
+    color: #343a40;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #the-video {
     pointer-events: none;
     position: relative;
-    top: 35px;
-    background-color: rgba(0, 0, 0, 0.92);
-    box-shadow: 0 0 12px 3px rgba(0, 0, 0, 0.8);
-    width: 1280px;
-    height: 720px;
-    max-height: calc(100vh - 77px);
-    transition: all 0.3s ease; /* Ajout d'une transition pour un effet plus doux */
+    background-color: #ffffff; /* Fond blanc pour la vidéo */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    border-radius: 10px; /* Bordures arrondies */
+    width: 80%; /* Largeur relative pour s'adapter à différents écrans */
+    max-width: 1280px;
+    height: auto;
+    margin: 20px 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #the-video.full {
-    pointer-events: none;
-    top: 0;
     width: 100%;
     height: auto;
-    box-shadow: 0 0 30px 15px #000;
-    max-height: calc(100vh - 42px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée en mode plein écran */
+    border-radius: 0;
+}
+
+#logo {
+    vertical-align: bottom;
 }
 
 .from {
     padding-top: 10px;
     font-weight: bold;
-    text-decoration: underline;
+    color: #495057;
 }
 
 .msg {
-    color: #9c3f23;
-    padding: 5px;
+    color: #495057;
+    padding: 10px 15px;
+    background-color: #e9ecef; /* Fond gris clair pour les messages */
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
 .msg a {
-    color: #22f0ff;
-    transition: color 0.3s ease; /* Ajout d'une transition pour les liens */
+    color: #007bff; /* Accent bleu pour les liens */
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .msg a:hover {
-    color: #0ff;
-}
-
-.msg a:visited {
-    color: #09d;
-}
-
-.sys-msg {
-    color: #a12828;
-}
-
-#chat_cont {
-    display: table;
-    text-align: left;
-    position: fixed;
-    bottom: 40px;
-    width: 100%;
-}
-
-#chat_cont > div {
-    display: table-row;
-}
-
-#chat_cont > div > div {
-    display: table-cell;
-    vertical-align: bottom;
-}
-
-#users-title {
-    text-align: center;
-    padding: 5px;
-    visibility: hidden;
-}
-
-#username-container {
-    visibility: hidden;
-}
-
-#username {
-    font-weight: bold;
-    color: #fafafa;
-    padding: 5px;
-}
-
-#chat_window {
-    text-align: right;
-    padding: 5px;
-}
-
-#chat_window > div {
-    display: inline-block;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.40) 10%, rgba(20, 20, 20, 0.80) 100%);
-    border-radius: 7px;
-    box-shadow: 0 0 16px -1px rgba(0, 0, 0, 0.8);
-    padding: 5px;
-    margin-top: 5px;
-    vertical-align: bottom;
-    max-width: 400px;
-    word-wrap: break-word;
-    transition: transform 0.3s ease; /* Ajout d'une transition pour un effet plus doux */
+    color: #0056b3; /* Accent plus sombre au survol */
 }
 
 .msg img {
-    max-width: 380px;
+    max-width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#chat_cont {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 20px;
+    width: 90%;
+    max-width: 1000px;
+    align-items: center;
+}
+
+#chat_window {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#chat_window > div {
+    display: block;
+    background-color: #f8f9fa; /* Fond clair pour les messages */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Légère ombre */
+    padding: 10px 15px;
+    margin: 5px 0;
+    max-width: 70%;
+}
+
+#chat_input {
+    background-color: #ffffff; /* Fond blanc pour l'input */
+    border: 1px solid #ced4da;
+    border-radius: 25px; /* Bordures arrondies */
+    padding: 10px 15px;
+    color: #495057;
+    width: calc(100% - 40px);
+    margin: 20px 0;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+}
+
+#chat_input:focus {
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25); /* Ombre bleutée au focus */
+}
+
+#chat_input_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#chat-input-container button {
+    background-color: #007bff; /* Bouton bleu */
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#chat-input-container button:hover {
+    background-color: #0056b3; /* Plus sombre au survol */
 }
 
 #chat_users {
     overflow-y: auto;
-    width: 150px;
-    text-align: right;
-    padding: 5px;
-    max-height: 400px;
-    vertical-align: bottom;
+    width: 100%;
+    max-width: 300px;
+    padding: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Légère ombre */
+    border-radius: 10px;
 }
 
 #chat_users > div {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.40) 10%, rgba(20, 20, 20, 0.80) 100%);
-    padding: 5px 10px 5px 0;
-    border-radius: 7px;
-    box-shadow: 0 0 16px -1px rgba(0, 0, 0, 0.8);
-    text-align: right;
-    vertical-align: bottom;
-    margin-top: 5px;
-    cursor: default;
+    padding: 10px 15px;
+    background-color: #e9ecef; /* Fond gris clair */
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-#chat-input-container {
-    display: block;
-    position: fixed;
-    top: 7px;
-    right: 12px;
-    text-align: right;
-    padding-top: 5px;
-    cursor: default;
-}
-
-#chat-input-container button {
-    color: #222;
-    font-weight: bold;
-    box-shadow: 0 0 16px -2px rgba(255, 0, 0, 0.8);
-    font-family: Helvetica, Arial, sans-serif;
-    transition: box-shadow 0.3s ease; /* Ajout d'une transition pour un effet plus doux */
-}
-
-#chat-input-container button:hover {
-    box-shadow: 0 0 20px -2px rgba(255, 0, 0, 0.8); /* Effet d'ombre au survol */
-}
-
-#chat_input {
-    background: rgba(20, 20, 20, 0.6);
-    border: 0;
-    border-radius: 7px;
-    outline: 0 none;
-    width: 400px;
-    padding: 5px;
-    color: #cf2e2e;
-    transition: box-shadow 0.3s ease; /* Ajout d'une transition pour un effet plus doux */
-}
-
-#chat_input:focus,
-#chat_input:active {
-    box-shadow: 0 0 16px -2px rgba(255, 0, 0, 0.8);
-}
-
-#log {
-    color: #b55;
-    text-align: center;
-}
-
-body > div {
-    position: relative;
-    text-align: center;
+#chat_users > div:hover {
+    background-color: #dee2e6; /* Plus sombre au survol */
 }
 
 #chat-tooltip-container {
-    background: rgba(20, 20, 20, 0.6);
-    max-height: 310px;
-    border-radius: 7px;
-    overflow-y: auto;
-    display: block !important;
+    background-color: #ffffff; /* Fond blanc pour le tooltip */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Légère ombre */
+    padding: 15px;
     position: fixed;
-    bottom: 40px;
-    box-shadow: 0 0 16px -2px rgba(10, 10, 10, 0.8);
+    bottom: 80px;
     right: 120px;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
-#chat-tooltip {
-    text-align: right;
-    padding: 5px;
-}
-
-#chat-tooltip:empty {
-    padding: 0;
-}
-
-#chat-tooltip > img {
+#chat-tooltip img {
+    max-width: 100%;
+    border-radius: 5px;
     cursor: pointer;
-    border: 2px solid transparent;
-    margin-bottom: 2px;
+    transition: transform 0.3s ease;
 }
 
-#chat-tooltip > img.highlighted {
-    box-shadow: 0px 0px 16px 6px rgba(0, 125, 255, 0.8);
-    position: relative;
-    z-index: 66;
-}
-
-#chat-tooltip > img:active {
-    box-shadow: 0px 0px 16px 6px rgba(255, 125, 0, 0.8);
-}
-
-.self-name {
-    font-weight: bold;
-}
-
-.round-btn {
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    padding: 0 0 0 7px;
-    text-align: left;
-}
-
-#chat-input-left {
-    position: fixed;
-    bottom: 7px;
-    left: 12px;
-    text-align: left;
-}
-
-#bookmarklet {
-    color: #222;
-    font-weight: bold;
-    box-shadow: 0 0 16px -2px rgba(180, 0, 0, 0.8);
-    background-color: rgba(180, 0, 0, 0.96);
-    transition: all 0.3s ease; /* Ajout d'une transition pour un effet plus doux */
-}
-
-#bookmarklet:hover {
-    color: #22a;
-    background-color: rgba(150, 0, 0, 0.96);
-    box-shadow: 0 0 20px -2px rgba(150, 0, 0, 0.96); /* Effet d'ombre au survol */
-}
-
-span.from > b.cmd-c {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.40) 10%, rgba(20, 20, 20, 0.80) 100%);
-    border-radius: 4px;
-    padding: 0;
-    text-align: center;
-    vertical-align: middle;
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-    text-decoration: none;
-    font-family: Monospace, Verdana, sans-serif;
-    transition: box-shadow 0.3s ease; /* Ajout d'une transition pour un effet plus doux */
-}
-
-span.from .cmd-c:hover,
-span.from .cmd-c.hovered {
-    box-shadow: 0px 0px 4px 0px rgba(0, 125, 255, 0.8);
-    color: rgba(150, 0, 0, 0.96);
-    cursor: pointer;
-}
-
-i.sys-msg > b:hover {
-    color: rgb(0, 255, 34);
-}
-
-.user-syncing {
-    color: #a22;
-    text-shadow: 0 0 30px rgb(255, 136, 0);
-}
-
-.dl-iframe {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    visibility: hidden;
-    z-index: -10;
+#chat-tooltip img:hover {
+    transform: scale(1.05); /* Zoom léger au survol */
 }
 
 .loading {
@@ -294,4 +186,23 @@ i.sys-msg > b:hover {
     background-repeat: no-repeat;
     background-position: center center;
     min-height: 40px;
+}
+
+.round-btn {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background-color: #007bff; /* Bouton rond bleu */
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.round-btn:hover {
+    background-color: #0056b3; /* Plus sombre au survol */
 }
